@@ -16,7 +16,7 @@ const
         newScript = []
 
       // 插入可编辑功能的脚本
-      newScript.push(`<script src="./extra.js"></script>`)
+      newScript.push(`<script src="../extra.js"></script>`)
       newScript.push('</html>')
 
       const newHTML = content.replace(/\<\/html\>(?!\-\-\>)/g, newScript.join(''))
