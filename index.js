@@ -13,7 +13,10 @@ const
       // 替换图片SRC 微信页面特殊处理方式，所有图片都有一个data-src属性来保存src值
       // 由于转发到微信打开有防盗链机制，因此加上防盗链接头破解
       const 
-        content = res.body.toString().replace(/data-src="/g, 'src="http://img2.haokoo.com/getImg.php?url='),
+        content = 
+          res.body.toString()
+            .replace(/\<head\>(?!\<\/head\>)/, `<head><meta name="referrer" content="never">`)
+            .replace(/data-src="/g, 'src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='),
         newScript = []
 
       // 插入可编辑功能的脚本
