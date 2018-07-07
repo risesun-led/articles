@@ -12,7 +12,7 @@ const
 
       // 替换图片SRC 微信页面特殊处理方式，所有图片都有一个data-src属性来保存src值
       const 
-        content = res.body.toString().replace(/data-src/g, 'src'),
+        content = res.body.toString().replace(/data-src="/g, 'src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='),
         newScript = []
 
       // 插入可编辑功能的脚本
