@@ -25,6 +25,12 @@
       flex-wrap: wrap;
       height: 100px;
     }
+    #deploy {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 40px;
+    }
   </style>
   <div id="ruisheng-mask">
       <div id="ruisheng-inputArea">
@@ -36,7 +42,9 @@
           <button id="ruisheng-add" class="ruisheng-unit">在前面增加</button>
           <button id="ruisheng-modify" class="ruisheng-unit">修改本段</button>
       </div>
-  </div>`
+  </div>
+  <button id="deploy">发布</button>
+  `
 
 
   var global = {
