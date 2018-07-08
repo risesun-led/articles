@@ -16,7 +16,7 @@ const
         content = 
           res.body.toString()
             .replace(/\<head\>(?!\<\/head\>)/, `<head><meta name="referrer" content="no-referrer">`)
-            .replace(/data-src="/g, 'src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='),
+            .replace(/data-src="/g, 'src="http://img.wtoutiao.com/?url='),
         newScript = []
 
       // 插入可编辑功能的脚本
