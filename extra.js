@@ -29,7 +29,11 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      padding: 40px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      box-shadow: 0 0 5px #000;
+      background-color: #fff;
     }
   </style>
   <div id="ruisheng-mask">
