@@ -23,6 +23,7 @@
     .ruisheng-unit{
       flex-basis: 100%;
       flex-wrap: wrap;
+      height: 100px;
     }
   </style>
   <div id="ruisheng-mask">
