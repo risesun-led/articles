@@ -1,7 +1,9 @@
 const
   request = require('request'),
   // cheerio = require('cheerio'),
-  fs = require('fs')
+  fs = require('fs'),
+  http = require('http'),
+  url = require('url')
 
 // 爬虫并附加可编辑功能的脚本
 const
@@ -35,5 +37,39 @@ const
   
 getContent(wxURL, articleID)
 
+// 建立服务器
+const
+  hostName = '127.0.0.1',
+  port = '8088',
+  server = http
+    .createServer(function(req, res) {
+      var pathname = url.parse(req.url).pathname
 
+      console.log('~~~~~~~~~~~~~~~', req.method)
+      res.setHeader('Content-Type','text/plain')
+      res.setHeader('Access-Control-Allow-Origin',"*")
+      res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+
+
+      if (req.method === "POST") {
+        var body = ''
+
+        req.on('data', function(chunk) {
+          body += chunk
+          console.log('~ chunk: ', chunk)
+        })
+
+        req.on('end', function() {
+          console.log('~~~~~~~~~~~~~~~~~~', body)
+          body = JSON.parse(body)
+        })
+      }
+
+
+      
+      res.end("hello nodemon~~")
+    })
+    .listen(port, hostName, function(){
+      console.log('~~~~~~~~~~ 在１２７．０．０．１建立本地服务器，监听８０８８端口 ~~~~~~~~~~')
+    })
 

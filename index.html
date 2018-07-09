@@ -8,15 +8,43 @@
 </head>
 <body>
     <p><strong>新增文章</strong></p>
-    <div>文章标题：<input type="text" /></div>
-    <div>文章链接：<input type="text" /></div>
+    <div>文章标题：<input type="text" id="articleName" /></div>
+    <div>文章链接：<input type="text" id="articleAddress" /></div>
     <div>
-        <button>确认</button>
-        <button>清空</button>
+        <button id="check">确认</button>
+        <button id="cancel">清空</button>
     </div>
     <p><strong>已发布文章</strong></p>
     <ul>
         <li><a href="./articles/1.html">百度要发大招了？？？</a></li>
     </ul>
+    <script>
+        window.onload = function() {
+            var articleName = document.getElementById('articleName')
+            var articleAddress = document.getElementById('articleAddress')
+            var checkBotton = document.getElementById('check')
+            var cancelBotton = document.getElementById('cancel')
+
+            checkBotton.addEventListener('click', function(e) {
+                var sName = articleName.value
+                var sAddress = articleAddress.value
+
+                console.log('~~~~~~~~~~~', sAddress, sName)
+
+                fetch('http://127.0.0.1:8088/add', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        name: sName,
+                        address: sAddress
+                    })
+                })
+            })
+
+            cancelBotton.addEventListener('click', function(e) {
+                articleAddress.value = ''
+                articleName.value = ''
+            })
+        }
+    </script>
 </body>
 </html>

@@ -77,15 +77,8 @@
     inputContent.value = ''
     // 控件框隐藏
     mask.style.display = 'none'
-    // switch(type) {
-    //   case 'input':
-        inputArea.style.display = 'none'
-    //     break
-    //   case 'bottons':
-        bottonArea.style.display = 'none'
-    //     break
-    //   default: 
-    // }
+    inputArea.style.display = 'none'
+    bottonArea.style.display = 'none'
   }
   var show = function(type) {
     hide()
@@ -136,7 +129,7 @@
     show('input')
   })
 
-  // 修改按钮点击
+  // 编辑功能
   checkButton.addEventListener('click', function (e) {
     global.newContent = inputContent.value
     switch(global.type) {

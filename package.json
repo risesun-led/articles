@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js && git add . && git commit -m '发布新文章-测试' && git push"
+    "deploy": "git add . && git commit -m '发布新文章-测试' && git push",
+    "server": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
