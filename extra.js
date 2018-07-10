@@ -47,7 +47,7 @@
           <button id="ruisheng-modify" class="ruisheng-unit">修改本段</button>
       </div>
   </div>
-  <button id="deploy">发布</button>
+  <button id="ruisheng-deploy">发布</button>
   `
 
 
@@ -70,6 +70,9 @@
   var bottonArea = document.getElementById('ruisheng-bottonArea')
   var addButton = document.getElementById('ruisheng-add')
   var modifyButton = document.getElementById('ruisheng-modify')
+
+  // 发布按钮
+  var deployButton = document.getElementById('ruisheng-deploy')
 
   // 显示和隐藏遮罩层相关控件
   var hide = function(type) {
@@ -135,6 +138,7 @@
     switch(global.type) {
       case 'MODIFY':
         global.target.innerHTML = global.newContent
+        modifyHtml('MODIFY', global.target.getAttribute('id'), global.newContent)
         break
       case 'ADD':
         var newPElement = document.createElement('p')
@@ -153,5 +157,28 @@
   cancelButton.addEventListener('click', function (e) {
     hide('input')
   })
+
+  // 发布编辑完成的内容
+  deployButton.addEventListener('click', function(e) {
+    
+  })
+
+
+  // 编辑页面通知server
+  function modifyHtml(type, id, innerHtml) {
+    if (!type || !id || !innerHtml) {
+      alert('错误，请检查内容填写以及点击区域是否准确并重试')
+    }
+    else {
+      fetch('http://127.0.0.1:8088/modifyhtml', {
+        method: 'POST',
+        body: JSON.stringify({
+          type: type,
+          id: id,
+          innerHtml: innerHtml
+        })
+      })
+    }
+  }
 
 })()

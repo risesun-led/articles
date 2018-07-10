@@ -25,17 +25,11 @@ const
       newScript.push(`<script src="../extra.js"></script>`)
       newScript.push('</html>')
 
+      console.log('+++++++++++++++++', articleName)
       const newHTML = content.replace(/\<\/html\>(?!\-\-\>)/g, newScript.join(''))
       fs.writeFileSync(`./articles/${articleName}.html`, newHTML)
     })
   }
-
-// 链接地址
-const
-  wxURL = 'https://mp.weixin.qq.com/s/P09e68RSF-KURgHVi4eMQQ',
-  articleID = '1'
-  
-getContent(wxURL, articleID)
 
 // 建立服务器
 const
@@ -45,29 +39,38 @@ const
     .createServer(function(req, res) {
       var pathname = url.parse(req.url).pathname
 
-      console.log('~~~~~~~~~~~~~~~', req.method)
+      console.log('~~~~~~~~~~~~~~~', pathname)
       res.setHeader('Content-Type','text/plain')
       res.setHeader('Access-Control-Allow-Origin',"*")
       res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
 
-
+      // POST方法
       if (req.method === "POST") {
         var body = ''
 
         req.on('data', function(chunk) {
           body += chunk
-          console.log('~ chunk: ', chunk)
         })
 
         req.on('end', function() {
-          console.log('~~~~~~~~~~~~~~~~~~', body)
           body = JSON.parse(body)
+          console.log('~~~~~~~~~~~~~~~~~~', body)
+
+          // POST路由
+          if (pathname === '/addarticle' && body && body.address) {
+            getContent(body.address, body.name || (new Date()).toDateString())
+          }
+          else if(pathname === '/modifyhtml' && body && body.type && body.id && body.innerHtml) {
+
+          }
+
         })
+        
       }
 
-
+      // 路由
       
-      res.end("hello nodemon~~")
+      res.end("risesun")
     })
     .listen(port, hostName, function(){
       console.log('~~~~~~~~~~ 在１２７．０．０．１建立本地服务器，监听８０８８端口 ~~~~~~~~~~')

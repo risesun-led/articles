@@ -17,6 +17,7 @@
     <p><strong>已发布文章</strong></p>
     <ul>
         <li><a href="./articles/1.html">百度要发大招了？？？</a></li>
+        <li><a href="./articles/2.html">前端大全</a></li>
     </ul>
     <script>
         window.onload = function() {
@@ -25,19 +26,23 @@
             var checkBotton = document.getElementById('check')
             var cancelBotton = document.getElementById('cancel')
 
+            // 新增文章的确认按钮
             checkBotton.addEventListener('click', function(e) {
                 var sName = articleName.value
                 var sAddress = articleAddress.value
 
-                console.log('~~~~~~~~~~~', sAddress, sName)
-
-                fetch('http://127.0.0.1:8088/add', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        name: sName,
-                        address: sAddress
+                if (!sName || !sAddress) {
+                    alert('文章链接或名称不合规定')
+                } 
+                else {
+                    fetch('http://127.0.0.1:8088/addarticle', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            name: sName,
+                            address: sAddress
+                        })
                     })
-                })
+                }
             })
 
             cancelBotton.addEventListener('click', function(e) {
